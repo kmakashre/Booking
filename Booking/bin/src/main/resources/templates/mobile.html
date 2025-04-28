@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="Booking">
+    <div class="cont">
+        <div class="left-section">
+            <h1>Sell Scrap Online to <span class="highlight">Scrap&Recycle Online</span></h1>
+            <p class="subtitle">Our Service Available in Indore</p>
+            <p class="subtitle">Minimum Scrap Pickup Value Should be 250Rs Required.</p>
+        </div>
+        <div class="right-section">
+            <div class="steps">
+                <span class="active">Mobile</span>
+                <span>Address</span>
+                <span>Schedule</span>
+                <span>Sell</span>
+            </div>
+            <form th:action="@{/mobile}" method="post" onsubmit="return validateForm()">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" th:value="${user?.name}" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="mobile">Mobile Number:</label>
+                    <input type="text" id="mobile" name="mobile" th:value="${user?.mobile}"
+                           placeholder="Enter 10-digit mobile number"
+                           maxlength="10" pattern="[0-9]{10}" required
+                           oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                </div>
+                <button type="submit" class="proceed-btn">Process</button>
+            </form>
+            <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function validateForm() {
+        const mobile = document.getElementById('mobile').value;
+        if (mobile.length !== 10 || !/^[0-9]{10}$/.test(mobile)) {
+            alert('Please enter a valid 10-digit mobile number!');
+            return false; // Form submit nahi hoga
+        }
+        return true; // Form submit hoga
+    }
+</script>
+</body>
+</html>

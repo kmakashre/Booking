@@ -1,0 +1,130 @@
+/* style.css */
+body {
+    background: url('/images/krishna.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+.Booking {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent; /* Transparent background for Booking */
+    padding: 20px;
+    margin: 30px;
+}
+
+.cont {
+    display: flex;
+    max-width: 1200px;
+    width: 100%;
+    background: white; /* Kept white */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.left-section {
+    flex: 1;
+    padding: 40px;
+    background: linear-gradient(135deg, #1e3a8a, #000000);
+    color: white;
+}
+
+.left-section h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.highlight {
+    color: #ffd700;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+
+.right-section {
+    flex: 1;
+    padding: 40px;
+}
+
+.steps {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+}
+
+.steps span {
+    color: #666;
+    font-weight: 500;
+}
+
+.steps span.active {
+    color: #412094;
+    font-weight: 700;
+    position: relative;
+}
+
+.steps span.active::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #2a61d7;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #2a61d7;
+    box-shadow: 0 0 5px rgba(42, 97, 215, 0.3);
+}
+
+.proceed-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #1e3a8a, #000000);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.proceed-btn:hover {
+    background: #1a3a8c;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+}

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome Page</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<style>
+    <style>
+        /* Optional: Style for full-screen background video */
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+</style>
+</style>
+<body>
+<div class="nav">
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/images/logo.jpg" alt="Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#booking">Booking</a></li>
+            <li><a href="#ScrapRate">Scrap Rates</a></li>
+            <li><a href="#Recycle">Recycle</a></li>
+
+
+            <!-- Recycle Services Dropdown -->
+            <li class="dropdown">
+                <a href="#service">Services <span class="dropdown-arrow">▼</span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="scrap-collection.html">Scrap Collection</a></li>
+                    <li><a href="zero-waste-society.html">Zero Waste Society</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#contact">Contact</a></li>
+
+            <!-- About Us Dropdown -->
+            <li class="dropdown">
+                <a href="#">About Us <span class="dropdown-arrow">▼</span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="why-us.html">Why Us</a></li>
+                    <li><a href="how-it-works.html">How It Works</a></li>
+                    <li><a href="commitment.html">Commitment</a></li>
+                    <li><a href="core-values.html">Core Values</a></li>
+                    <li><a href="sustainability.html">Committed to Sustainability</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <button class="submit-btn">Book now</button>
+
+        <!-- search -->
+        <div class="nav-search">
+            <div class="search-icon" id="searchIcon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="search-box" id="searchBox">
+                <input type="text" placeholder="Search..." class="search-input">
+                <button class="close-search" id="closeSearch">Esc</button>
+            </div>
+        </div>
+
+    </nav>
+</div>
+
+<!---------------------------   home page   ------------------------------>
+<!-- Video Background -->
+<div class="video-container">
+    <video autoplay loop muted playsinline>
+        <source th:src="@{/videos/scrap.mp4}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Header (home page) -->
+    <section class="half-page-image" id="home">
+        <div class="content">
+            <h1 class="pb-5">
+                Got
+                <span class="container-bg-success-2">Scrap</span>?
+                <br>
+                Sell it to us.
+            </h1>
+            <!--!-->
+            <p class="label-lg pb-8">Sell us your recyclable wastes and help contribute to the circular economy</p>
+        </div>
+    </section>
+</div>
+<!---------------------------- booking Section ----------------------------->
+<div class="Booking">
+    <div class="cont">
+        <div class="left-section">
+            <h1>Sell Scrap Online to <span class="highlight">Scrap&Recycle Online</span></h1>
+            <p class="subtitle">Our Service Available in Indore</p>
+            <p class="subtitle">Minimum Scrap Pickup Value Should be 250Rs Required.</p>
+        </div>
+        <div class="right-section">
+            <div class="steps">
+                <span class="active">Mobile</span>
+                <span>Address</span>
+                <span>Schedule</span>
+                <span>Sell</span>
+            </div>
+            <form th:action="@{/mobile}" method="post" onsubmit="return validateForm()">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" th:value="${user?.name}" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="mobile">Mobile Number:</label>
+                    <input type="text" id="mobile" name="mobile" th:value="${user?.mobile}"
+                           placeholder="Enter 10-digit mobile number"
+                           maxlength="10" pattern="[0-9]{10}" required
+                           oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                </div>
+                <button type="submit" class="proceed-btn">Process</button>
+            </form>
+            <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+        </div>
+    </div>
+</div>
+
+<!------------------------------screp rate ------------------------------->
+<div class="scrapRate" id="ScrapRate">
+    <div class="container">
+        <header>
+            <h1>Scrap Rates</h1>
+        </header>
+        <section class="note">
+            <div class="note-content">
+                <p><strong>Note</strong></p>
+                <ul>
+                    <li>Scrap Rates may be different for bulk Scrap. Call us at <a href="tel:+91 6263824539">6263824539</a> to get a quote for bulk Scrap.</li>
+                    <li>We don't deal in toughened glass, wooden items, fabrics.</li>
+                    <li>Minimum Scrap Pickup Value Should be 250Rs Required.</li>
+                </ul>
+            </div>
+        </section>
+        <section class="categories">
+            <div class="category" onclick="window.location.href='paper.html'">Paper</div>
+            <div class="category">Plastic</div>
+            <div class="category">Metal</div>
+            <div class="category">Electronics</div>
+            <div class="category">E-Waste</div>
+            <div class="category">Vehicle</div>
+        </section>
+    </div>
+    <a href="https://www.yourwebsite.com/contact-url" class="contact-link">
+        <img src="contact-icon.png" alt="Contact Us">
+    </a>
+</div>
+<!----------------------------- how it works ----------------------------->
+<section class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps-container">
+        <div class="step">
+            <img src="/location2.jpg" alt="Schedule a pickup">
+            <h3>Schedule a pickup</h3>
+            <p>Book through our website or WhatsApp for hassle-free scheduling.</p>
+        </div>
+        <div class="step">
+            <img src="/location2.jpg" alt="Pickup from your Doorstep">
+            <h3>Pickup from your Doorstep</h3>
+            <p>Your Pickup Request has been confirmed, and our executive will arrive at your doorstep as per your chosen date and time.</p>
+        </div>
+        <div class="step">
+            <img src="/location2.jpg" alt="Get Paid">
+            <h3>Get Paid</h3>
+            <p>Multiple payment options, on-the-spot payment, for hassle-free transactions.</p>
+        </div>
+    </div>
+</section>
+
+<!-- /********************************* contact page ****************************/ -->
+<!--<div class="contact-section" id="contact">-->
+<!--    <div class="contact-info">-->
+<!--        <h2>Contact Information</h2>-->
+<!--        <p>Fill up the form and our Team will get back to you within 24 hours</p>-->
+<!--        <p><span>☎</span> +91 6263824539</p>-->
+<!--        <p><span>✉</span> contact@Scrap&Recycle.com</p>-->
+<!--        <p><span>📍</span>Takshila Parisar, Khandwa Road, Indore, Madhya Pradesh 452001</p>-->
+<!--    </div>-->
+<!--    <div class="contact-form">-->
+<!--        <form th:action="@{/contact}" th:object="${contactForm}" method="post">-->
+<!--            <label for="name">Name</label>-->
+<!--            <input type="text" id="name" placeholder="Your name" th:field="*{name}" required>-->
+<!--            <small class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>-->
+
+<!--            <div class="row">-->
+<!--                <div>-->
+<!--                    <label for="phone">Phone Number</label>-->
+<!--                    <input type="tel" id="phone" placeholder="Your phone number" th:field="*{phone}" required>-->
+<!--                    <small class="error" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></small>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <label for="email">Email Address</label>-->
+<!--                    <input type="email" id="email" placeholder="Your email address" th:field="*{email}" required>-->
+<!--                    <small class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <label for="subject">Subject</label>-->
+<!--            <input type="text" id="subject" placeholder="Subject of your message" th:field="*{subject}" required>-->
+<!--            <small class="error" th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}"></small>-->
+
+<!--            <label for="message">Message</label>-->
+<!--            <textarea id="message" placeholder="Your message here..." th:field="*{message}" required></textarea>-->
+<!--            <small class="error" th:if="${#fields.hasErrors('message')}" th:errors="*{message}"></small>-->
+
+<!--            <button type="submit">Send Message</button>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
+<!--*********************** footer *************************** -->
+
+<footer>
+    <a href="feedback.html" class="feedback-button">Feedback</a>
+    <div class="footer-container">
+        <div class="footer-section about">
+            <img src="/images/logo.jpg" alt="Scrap&Re Online Logo" class="logo">
+            <p>Scrap&Recycle Online Your hassle-free door-to-door scrap pickup service in Indore. We provide hassle-free doorstep scrap pickup service. Book through our website or call us.</p>
+            <div class="social-icons">
+                <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+        <div class="footer-section links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Scrap Rates</a></li>
+                <li><a href="#">E-Waste Scrap</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="footer-section pages">
+            <h3>Help</h3>
+            <ul>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms and Conditions</a></li>
+            </ul>
+        </div>
+        <div class="footer-section contact">
+            <h3>Get In Touch</h3>
+            <p></p>
+            <p>Email: info@Scrap&Recycle.com</p>
+            <p>Phone: 91+6263824539</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>Powered by Satyam Anjali Karishma</p>
+    </div>
+    <!--social media icon-->
+    <div class="floating-icons">
+        <div class="main-icon" onclick="toggleIcons()"><i class="fa-solid fa-plus"></i></div>
+        <div class="hidden-icons">
+            <a href="tel:+91 6263824539"  class="phone-icon"  onclick="makeCall()" title="Call us"><i class="fa-solid fa-phone-volume"></i></a>
+            <a href="https://web.whatsapp.com/" onclick="openWhatsApp()" target="_blank" rel="noopener" class="whatsapp-icon" title="Contact us on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+    </div>
+
+</footer>
+<script th:src="@{/js/script.js}" defer></script>
+</body>
+</html>

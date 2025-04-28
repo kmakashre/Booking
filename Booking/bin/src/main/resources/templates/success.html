@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="Booking">
+    <div class="cont">
+        <div class="left-section">
+            <h1>Booking <span class="highlight">Successful</span></h1>
+            <p class="subtitle">Your booking has been completed!</p>
+        </div>
+        <div class="right-section">
+            <p th:text="${message}" style="text-align: center; margin-bottom: 20px; color: green; font-size: 18px;">Booking Successfully Completed!</p>
+            <a th:href="@{/mobile}" class="proceed-btn" style="background-color: #2a61d7;">Back</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelector('.hamburger').addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.toggle('active');
+    });
+    document.querySelector('.search-icon').addEventListener('click', () => {
+        document.querySelector('.search-box').style.display = 'block';
+    });
+    document.querySelector('#closeSearch').addEventListener('click', () => {
+        document.querySelector('.search-box').style.display = 'none';
+    });
+</script>
+</body>
+</html>

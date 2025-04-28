@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome Page</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+
+<body>
+<section id="sell">
+  <div class="Booking">
+    <div class="cont">
+      <div class="left-section">
+        <h1>Confirm <span class="highlight">Sale</span></h1>
+        <p class="subtitle">Provide details of the item to sell</p>
+      </div>
+      <div class="right-section">
+        <div class="steps">
+          <span>Mobile</span>
+          <span>Address</span>
+          <span>Schedule</span>
+          <span class="active">Sell</span>
+        </div>
+        <form th:action="@{/sell}" th:object="${user}" method="post" onsubmit="return validateForm()">
+          <div class="form-group">
+            <label for="materialType">Material Type:</label>
+            <select id="materialType" th:field="*{materialType}" required>
+              <option value="">Select Material Type</option>
+              <option value="paper">Paper</option>
+              <option value="plastic">Plastic</option>
+              <option value="metal">Metal</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="weight">Weight (kg):</label>
+            <input type="number" id="weight" th:field="*{weight}" placeholder="Enter weight in kg" step="0.1" min="0.1" required>
+          </div>
+          <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" th:field="*{description}" placeholder="Enter a brief description" rows="8" style="width: 100%; max-width: 600px;" required></textarea>
+          </div>
+          <button type="submit" class="proceed-btn" aria-label="Confirm sale">Process</button>
+        </form>
+        <p th:if="${error}" th:text="${error}" class="error"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function validateForm() {
+      const materialType = document.getElementById('materialType').value;
+      const weight = document.getElementById('weight').value;
+      const description = document.getElementById('description').value;
+
+      if (!materialType) {
+          alert('Please select a material type');
+          return false;
+      }
+      if (!weight || weight <= 0) {
+          alert('Please enter a valid weight greater than 0');
+          return false;
+      }
+      if (!description) {
+          alert('Please enter a description');
+          return false;
+      }
+      return true;
+  }
+</script>
+
+</body>
+</html>

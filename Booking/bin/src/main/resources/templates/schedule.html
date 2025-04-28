@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="Booking">
+    <div class="cont">
+        <div class="left-section">
+            <h1>Delivery <span class="highlight">Schedule</span></h1>
+            <p class="subtitle">Choose your preferred time</p>
+        </div>
+        <div class="right-section">
+            <div class="steps">
+                <span>Mobile</span>
+                <span>Address</span>
+                <span class="active">Schedule</span>
+                <span>Sell</span>
+            </div>
+            <form th:action="@{/schedule}" th:object="${user}" method="post">
+                <div class="form-group">
+                    <label for="date">Preferred Date:</label>
+                    <input type="date" id="date" th:field="*{preferredDate}">
+                </div>
+                <div class="form-group">
+                    <label for="time">Preferred Time:</label>
+                    <input type="time" id="time" th:field="*{preferredTime}">
+                </div>
+                <button type="submit" class="proceed-btn">Process</button>
+            </form>
+        </div>
+    </div>
+</div>
+</footer>
+
+
+<script>
+    document.querySelector('.hamburger').addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.toggle('active');
+    });
+    document.querySelector('.search-icon').addEventListener('click', () => {
+        document.querySelector('.search-box').style.display = 'block';
+    });
+    document.querySelector('#closeSearch').addEventListener('click', () => {
+        document.querySelector('.search-box').style.display = 'none';
+    });
+</script>
+</body>
+</html>
